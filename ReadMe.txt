@@ -7,5 +7,5 @@
 
 ## Image
 <p>
-  <img src="https://github.com/natsukikaminishi/kintai/blob/master/kintai_app.gif" width=60%>  
-</p>　https://github.com/natsukikaminishi/BoxDemoApp
+  <img src="https://github.com/natsukikaminishi/BoxDemoApp/blob/main/demoImage.jpg" width=60%>  
+</p>
