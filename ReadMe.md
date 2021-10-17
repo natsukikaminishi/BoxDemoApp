@@ -7,6 +7,8 @@
 
 ※:JWT,アプリ+Enterprise,読み書き, as user, アクセストークン生成<br>
    config.jsonはD:\Box\pleiades\config.jsonとDemoApplicationController.javaで指定しているので書き換えてください。<br>
+   
+ユーザー認証もそのうちやります。多分。
 
 ## Image
 <p>
