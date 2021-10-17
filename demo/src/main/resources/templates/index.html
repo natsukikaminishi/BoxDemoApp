@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>BoxAPITest</title>
+<meta charset="utf-8" />
+<link th:href="@{/css/content.css}" rel="stylesheet">
+<link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"/>
+<script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+</head>
+<body>
+	<img th:src="@{/image/BOX.png}" /><br><label th:text="*{message}"></label>
+   	<form class="form-control-file" method="post" enctype="multipart/form-data" th:object="${demoForm}">
+   		<dl>
+	   		<dt>File</dt>
+	        <dd><input type="file" th:field="*{multipartFile}" /><br></dd>
+	        <dt>Folder ID</dt>
+	        <dd><input type="text" th:field="*{folderId}" /><br></dd>
+	        <dt>User ID</dt>
+	        <dd><input type="text" th:field="*{userId}" /><br></dd>
+	        <dt>AuthOption</dt>
+	        <dd>
+			<select id="auth" th:field="*{authOption}">
+				<option value="1">何もしない（SA）</option>
+				<option value="2">as-userヘッダー</option>
+				<option value="3">アクセストークン生成</option>
+			</select>
+			</dd>
+		 	<dd><button type="submit" formaction="/upload" th:formaction="@{/upload}" class="btn btn-primary">FileUploadAPI実行</button></dd>
+	   		<dt>User Name</dt>
+	        <dd><input type="text" th:field="*{userName}" /><br></dd>
+		 	<dd><button type="submit" formaction="/createUser" th:formaction="@{/createUser}" class="btn btn-primary">CreateAppUserAPI実行</button></dd>
+	 	</dl>
+    </form>
+</body>
+</html>

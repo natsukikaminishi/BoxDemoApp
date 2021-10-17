@@ -1,0 +1,23 @@
+img{
+  width:12%;
+}
+
+label{
+  margin-left:10px;
+}
+
+form{
+  padding:10px 20px;
+}
+
+form dl dt{
+  width: 165px;
+  padding:10px 0;
+  margin:0;
+  float:left;
+  clear:both;
+}
+
+form dl dd{
+  padding:10px 0;
+}
