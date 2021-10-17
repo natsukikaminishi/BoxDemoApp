@@ -1,39 +1,3 @@
-//package com.example.demo;
-//
-//import java.io.FileInputStream;
-//import java.io.FileReader;
-//import java.io.IOException;
-//import java.io.Reader;
-//
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.PostMapping;
-//
-//import com.box.sdk.BoxConfig;
-//import com.box.sdk.BoxDeveloperEditionAPIConnection;
-//import com.box.sdk.BoxFile;
-//import com.box.sdk.BoxFolder;
-//
-//@Controller
-//public class FileUploadController {
-//	@PostMapping("/upload")
-//	public String upload(UploadForm uploadForm, Model model) throws IOException {
-//	    model.addAttribute("originalFilename", uploadForm.getFile()
-//	            .getOriginalFilename());
-//	    
-//		Reader reader = new FileReader("D:\\Box\\pleiades\\config.json");
-//		BoxConfig boxConfig = BoxConfig.readFrom(reader);
-//		BoxDeveloperEditionAPIConnection api = BoxDeveloperEditionAPIConnection.getAppEnterpriseConnection(boxConfig);
-//
-//		BoxFolder rootFolder = BoxFolder.getRootFolder(api);
-//		FileInputStream stream = new FileInputStream("D:\\Box\\pleiades\\eclipse\\FileTest.txt");
-//		BoxFile.Info newFileInfo = rootFolder.uploadFile(stream, "FileTest.tx");
-//		stream.close();
-//		
-//		return "redirect:/";
-//	}
-//}
-
 package com.example.demo;
 
 import java.io.File;
