@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.box.sdk.BoxAPIConnection;
 import com.box.sdk.BoxConfig;
 import com.box.sdk.BoxDeveloperEditionAPIConnection;
 import com.box.sdk.BoxFolder;
@@ -23,7 +24,15 @@ import com.box.sdk.BoxUser;
 @Controller
 public class DemoApplicationController {
 
-	public static String configPath = "D:\\Box\\pleiades\\config.json";
+	public static final String configPath = "D:\\Box\\pleiades\\config.json";
+	public static final String clientId = "rjupihgu0m7zzbdxx6tslzzeeenchs4j";
+	public static final String clientSecret = "u848lR2wUsAKjRZlUxtbpPcMpzPUa1Tg";
+	public static final String authorizationUrl = "https://account.box.com/api/oauth2/authorize?client_id=" 
+													+ clientId
+													+ "&response_type=code";
+//	public static String code;
+	BoxDeveloperEditionAPIConnection api = null;
+	BoxAPIConnection client = null;
 	
     /**
      * 初期処理
@@ -33,8 +42,18 @@ public class DemoApplicationController {
     String index(Model model) {
     	
         model.addAttribute("demoForm", new DemoForm());
-
+    	model.addAttribute("authorizationUrl", authorizationUrl);
         return "/index";
+    }
+    
+    /**
+     * 初期処理
+     * @return
+     */
+    @GetMapping("/auth")
+    String auth(Model model) {
+
+        return "/auth";
     }
 
     /**
@@ -68,7 +87,7 @@ public class DemoApplicationController {
 			Reader reader = new FileReader(configPath);
 			BoxConfig config = BoxConfig.readFrom(reader);
 			// APIConnection取得
-			BoxDeveloperEditionAPIConnection api = BoxDeveloperEditionAPIConnection.getAppEnterpriseConnection(config);
+			api = BoxDeveloperEditionAPIConnection.getAppEnterpriseConnection(config);
 			// CreateAppUserAPI実行
 			BoxUser.createAppUser(api, demoForm.getUserName());
 		} catch (Exception e) {
@@ -92,8 +111,6 @@ public class DemoApplicationController {
 		Reader reader = new FileReader(configPath);
 		BoxConfig config = BoxConfig.readFrom(reader);
 		// AuthOprionによる分岐処理
-		BoxDeveloperEditionAPIConnection api = null;
-
 		if (demoForm.getAuthOption().equals("1")) {
 			// EnterpriseでのConnection
 			api = BoxDeveloperEditionAPIConnection.getAppEnterpriseConnection(config);
