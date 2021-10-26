@@ -5,10 +5,24 @@
 <meta charset="utf-8" />
 <link th:href="@{/css/content.css}" rel="stylesheet">
 <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"/>
-<script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+<script th:src="@{/js/content.js}"></script>
+
+<script th:inline="javascript">
+	function auth() {
+		var authorizationUrl = /*[[${authorizationUrl}]]*/
+		window.open(authorizationUrl, "ログイン", "width=480,height=480");
+	}
+</script>
+
+
 </head>
 <body>
-	<img th:src="@{/image/BOX.png}" /><br><label th:text="*{message}"></label>
+	<img th:src="@{/image/BOX.png}" />
+	<input type="button" id="md"  class="btn btn-primary" value="標準OAuth2.0による認証" onclick="auth();" />
+	<input type="hidden" th:field="${authorizationUrl}" />
+	<br><label th:text="*{message}"></label>
    	<form class="form-control-file" method="post" enctype="multipart/form-data" th:object="${demoForm}">
    		<dl>
 	   		<dt>File</dt>
@@ -20,9 +34,9 @@
 	        <dt>AuthOption</dt>
 	        <dd>
 			<select id="auth" th:field="*{authOption}">
-				<option value="1">何もしない（SA）</option>
-				<option value="2">as-userヘッダー</option>
-				<option value="3">アクセストークン生成</option>
+				<option value="1">JWT:何もしない（SA）</option>
+				<option value="2">JWT:as-userヘッダー</option>
+				<option value="3">JWT:アクセストークン生成</option>
 			</select>
 			</dd>
 		 	<dd><button type="submit" formaction="/upload" th:formaction="@{/upload}" class="btn btn-primary">FileUploadAPI実行</button></dd>
@@ -31,5 +45,6 @@
 		 	<dd><button type="submit" formaction="/createUser" th:formaction="@{/createUser}" class="btn btn-primary">CreateAppUserAPI実行</button></dd>
 	 	</dl>
     </form>
+
 </body>
 </html>
